@@ -18,3 +18,8 @@ elementAt (x:xs) n
     | length xs < (fromIntegral(n) - 1) = error "elementAt: invalid input"
     | n == 1    = x
     | otherwise = elementAt xs (n - 1)
+
+-- Problem 4: Find the number of elements of a list
+myLength :: (Integral b) => [a] -> b
+myLength [] = 0
+myLength (x:xs) = 1 + myLength xs

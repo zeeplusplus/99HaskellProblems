@@ -22,4 +22,19 @@ elementAt (x:xs) n
 -- Problem 4: Find the number of elements of a list
 myLength :: (Integral b) => [a] -> b
 myLength [] = 0
-myLength (x:xs) = 1 + myLength xs
+myLength (_:xs) = 1 + myLength xs
+
+-- Problem 5: Reverse a list
+myReverse :: [a] -> [a]
+myReverse = foldl (\a x -> x:a) []
+
+-- Problem 6: Find out whether a list is a palindrome. A palindrome can be read forward or backward; e.g. (x a m a x)
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome xs = take ((length xs) `div` 2) xs == reverse (drop ((length xs) `div` 2) xs)
+
+-- Problem 7: Flatten a nested list structure
+data NestedList a = Elem a | List [NestedList a]
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List []) = []
+flatten (List (x:xs)) = (flatten x) ++ (flatten (List xs))
